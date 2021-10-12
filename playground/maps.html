@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Maps</title>
+  <link rel="stylesheet" href="../base.css">
+</head>
+
+<body>
+  <ul class="prizes"></ul>
+  <script>
+    const ul = document.querySelector('.prizes');
+    const score = 100;
+    const prizes = new Map();
+    prizes.set(100, 'Bear');
+    prizes.set(200, 'Duck');
+    prizes.set(300, 'Car');
+    const winning = console.log(`You win a ${prizes.get(score)}`);
+
+    prizes.forEach((entry) => {
+      console.log(entry);
+    });
+    for (const prize of prizes) {
+      console.log(prize);
+    }
+    for (const [points, prize] of prizes) {
+      const li = `<li>${points} - ${prize}`;
+      ul.insertAdjacentHTML('beforeend', li);
+    }
+    const person1 = {
+      name: 'emil',
+      age: 200,
+    };
+    const myMap = new Map();
+    myMap.set('name', 'Emil');
+    myMap.age = 100;
+    myMap.set(person1, 'Really cool');
+  </script>
+</body>
+
+</html>

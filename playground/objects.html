@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title></title>
+  <link rel="stylesheet" href="../base.css">
+</head>
+
+<body>
+  <input type="text" name="first" value="emil" />
+  <script src="https://unpkg.com/lodash@4.17.21/lodash.js"></script>
+  <script>
+    const meatInventory = {
+      bacon: 2,
+      sausage: 3,
+    };
+    const veggieInventory = {
+      lettuce: 5,
+      tomatoes: 3,
+    };
+    const inventory = { ...meatInventory, ...veggieInventory };
+    console.log(inventory);
+    const name1 = 'Emil';
+    let name2 = 'wes';
+
+    const person1 = {
+      first: 'wes',
+      last: 'bos',
+    };
+    const person2 = {
+      first: 'wes',
+      last: 'bos',
+    };
+    const person3 = { ...person1 };
+    person3.first = 'Larry';
+    const person4 = _.cloneDeep(person1);
+
+    // console.log(person4);
+    name2 = 'Emil';
+    console.log(name1 === name2);
+
+    const nameInput = document.querySelector('[name="first"]');
+    // const name = nameInput ? nameInput.value : '';
+    // ----------  newest method
+    const name = nameInput?.value;
+    const age = 50;
+
+    const person = {
+      age: 100,
+      name: 'Emil',
+      job: 'stuff',
+      sayHello(greeting = 'Hey') {
+        return `${greeting} ${this.name}`;
+      },
+      sneeze: () => {
+        console.log('Atchooo', this.name);
+      },
+    };
+
+    // const propertyToCheck = prompt('What do you want to check?');
+    // console.log(propertyToCheck);
+    // console.log(person[propertyToCheck]);
+    // console.log(delete person.job);
+    const nestedPerson = person?.jobs?.side;
+  </script>
+</body>
+
+</html>
