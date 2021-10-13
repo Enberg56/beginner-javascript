@@ -9,7 +9,34 @@
 </head>
 
 <body>
+
+  <div class="wrapper">
+    <p>Hey im in a wrapper</p>
+  </div>
+
   <script>
+    const person = {
+      name: 'Emil',
+      sayHi() {
+        return (`Hello my name is ${this.name}`);
+      }
+    };
+    const jenna = { name: 'jenna' }
+
+    // ----- this is alwas whats to the left when you call the function... 
+    // ----- const sayHi = person.sayHi; // nothing is left if you call sayHi() 
+    // ----- one can bind() the this to other stuff, like an lnline object, or another object like jenna, above
+    const sayHi = person.sayHi.bind({ name: 'Harry' }); // this is inline
+
+    // const $ = document.querySelector;
+    //------ that kind of works ... one would think $('p') would work to.. but alas it doesn't
+    //------ there's nothing left of the function once you type $... but if we bind document.. we fake that something is left of the $
+    const $ = document.querySelector.bind(document);
+    console.log($('p'))
+    //------ this also naturally work
+    const lookFor = document.querySelectorAll.bind(document);
+    console.log(lookFor('p'));
+
   </script>
 </body>
 
