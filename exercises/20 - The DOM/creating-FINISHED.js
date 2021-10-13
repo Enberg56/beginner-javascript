@@ -18,7 +18,7 @@ myDiv.appendChild(myImage);
 
 document.body.appendChild(myDiv);
 
-// oh shoot! we need to add somethint to the top. like a heading!
+// oh shoot! we need to add somethinr to the top. like a heading!
 const heading = document.createElement('h2');
 heading.textContent = 'Cool Things';
 
