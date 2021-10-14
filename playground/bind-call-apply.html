@@ -32,10 +32,28 @@
     //------ that kind of works ... one would think $('p') would work to.. but alas it doesn't
     //------ there's nothing left of the function once you type $... but if we bind document.. we fake that something is left of the $
     const $ = document.querySelector.bind(document);
-    console.log($('p'))
+    // console.log($('p'))
     //------ this also naturally work
     const lookFor = document.querySelectorAll.bind(document);
-    console.log(lookFor('p'));
+    // console.log(lookFor('p'));
+    const wrapper = document.querySelector('wrapper');
+
+    // ----- Over to examle functions 
+    const bill = {
+      total: 1000,
+      calculate: function (taxRate) {
+        return this.total + (this.total * taxRate);
+        console.log(this.total)
+      }
+    }
+    const total = bill.calculate(0.13);
+    console.log(total);
+
+    // const calc = bill.calculate;
+    // const calc = bill.calculate.bind({ total: 500 });
+    // console.log(calc(0.13));
+    const calc = bill.calculate.bind({ total: 500 }, 0.06);
+    console.log(calc());
 
   </script>
 </body>
