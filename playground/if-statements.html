@@ -9,11 +9,82 @@
 </head>
 
 <body>
+  <h1 class="test"></h1>
+
+
   <script>
-    if (10 > 2) {
-      console.log('Yep');
+    //    const name = 'wes';
+    //      const fillthis = document.queryselector('.test');
+    //  const field = document.queryselectorall('input');
+
+    //  function slugify(sentence, lowercase) {
+    //  if (lowercase) {
+    //  return sentence.replace(/\s/g, '-').tolowercase();
+    //  }
+    //  return sentence.replace(/\s/g, '-');
+    //  }
+    //  function rephrase() {
+    //  fillthis.innerhtml(`<h1> hello </h1>`);
+    //  }
+    //  / /    ------------writing a sentence with parameters using longform if statement
+    //  function writesentence(max) {
+    //  if (isnan(max)) {
+    //  max = 5;
+    //  }
+    //  const count = math.floor(math.random() * max);
+
+    //  let word;
+    //  if (count === 1) {
+    //  word = ' item';
+    //  } else if (count === 0) {
+    //  word = ', no items';
+    //  } else {
+    //  word = ' items';
+    //  }
+    //  const sentence = `you have ${count}${word} in your cart`;
+    //  console.log(sentence);
+    //  }
+
+    const count = 4;
+    //    ----------writing a sentence with shorthand if statement
+    const word = count === 1 ? ' item' : ' items';
+    //    const sentence = `you have ${count}${word} in your cart`;
+
+    //  ---------- Even shorter IF statement, Implementing it into the centence
+    const sentence = `you have ${count} item${count === 1 ? '' : 's'} in your cart`;
+    console.log(sentence);
+
+    // ------------ new theme
+    const isAdmin = true;
+
+    function showAdminBar() {
+      console.log('showing admin bar');
+    }
+
+    isAdmin ? showAdminBar() : null;
+
+    function check1() {
+      console.log('running check 1');
+      return true;
+    }
+    function check2() {
+      console.log('running check 2');
+      return true;
+    }
+    function check3() {
+      console.log('running check 1');
+      return false;
+    }
+    if (check1() && check2() && check3()) {
+      console.log('all checks passed');
+    } else {
+      console.log('Some checks failed');
     }
   </script>
 </body>
 
+<<<<<<< HEAD </html>
+  =======
+
 </html>
+>>>>>>> f024d74 (One summer worth of courses.)

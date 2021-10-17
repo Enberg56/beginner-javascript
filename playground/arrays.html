@@ -12,6 +12,55 @@
 
 <body>
 
+  <script>
+    const comments = [
+      { text: 'Cool Beans', id: 123 },
+      { text: 'Love this', id: 133 },
+      { text: 'Neato', id: 233 },
+      { text: 'good bikes', id: 333 },
+      { text: 'so good', id: 433 },
+    ];
+
+    function deleteComment(id, array) {
+      const badComment = array.findIndex((comment) => comment.id === id);
+      return [...array.slice(0, badComment), ...array.slice(badComment + 1)];
+    }
+    const names = [
+      'wes',
+      'kait',
+      'snickers',
+      // 'wes',
+      // 'kait',
+      // 'snickers',
+      // 'wes',
+      // 'kait',
+      // 'snickers',
+      // 'wes',
+      // 'kait',
+      // 'snickers',
+      // 'wes',
+      // 'kait',
+      // 'snickers',
+      // 'wes',
+      // 'kait',
+      // 'snickers',
+    ];
+    const names2 = [...names, 'lux'];
+    names2.push('paul');
+    names2.unshift('karen');
+
+    const kaitindex = names.findIndex((name) => name === 'kait');
+
+    const newNamesWithOutKait = [
+      names.slice(0, kaitindex),
+      names.slice(kaitindex + 1),
+    ].flat();
+    const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+    const pizzaSlice = numbers.slice(2, 4);
+    // ----------------- LOGGERS
+    console.log(comments);
+    const numbersReversed = [...numbers].reverse();
+  </script>
 </body>
 
 </html>
