@@ -7,9 +7,75 @@
   <title>Event Loop</title>
   <link rel="stylesheet" href="../base.css">
 </head>
+<style>
+  body {
+    display: flex;
+    justify-content: center;
+  }
+
+  .go {
+    background: white;
+    padding: 5em;
+    margin: 1em;
+    width: 25rem;
+    transition: all 0.2s;
+  }
+
+  .circle {
+    border-radius: 50%;
+  }
+
+  .red {
+    background-color: red;
+    color: white;
+  }
+
+  .purple {
+    background-color: purple;
+    color: white;
+  }
+
+  .hidden {
+    opacity: 0;
+  }
+</style>
 
 <body>
+  <div class="go">Click me</div>
+
   <script>
+
+    // ---- the boring stuff
+    console.log('Starting')
+    setTimeout(() => {
+      console.log('waiting for two sec')
+    }, 2000);
+    console.log('ending')
+
+
+    // ----- The task
+    const go = document.querySelector('.go')
+
+    go.addEventListener('click', function (e) {
+      const el = e.currentTarget;
+      el.textContent = 'GO';
+      console.log(el)
+      setTimeout(() => {
+        el.classList.add('circle');
+        setTimeout(() => {
+          el.classList.add('red')
+          setTimeout(() => {
+            el.classList.add('purple')
+            setTimeout(() => {
+              el.classList.remove('circle');
+              setTimeout(() => {
+                el.classList.add('hidden')
+              }, 300);
+            }, 250);
+          }, 500);
+        }, 500)
+      }, 2000);
+    })
 
   </script>
 </body>
