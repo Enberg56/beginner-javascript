@@ -105,7 +105,31 @@
         })
     };
 
-    go.addEventListener('click', animate)
+    // ---- Using async and await. clean and nice but harder to debug
+    async function animate2(e) {
+      const el = e.currentTarget;
+      console.log('animate 2')
+      el.textContent = 'GO';
+      await wait(200);
+      el.classList.add('circle');
+      await wait(200);
+      el.classList.add('red')
+      await wait(200);
+      el.classList.add('purple')
+      await wait(200);
+      el.classList.remove('red')
+      await wait(200);
+      el.classList.remove('circle');
+      await wait(250);
+      el.classList.add('hidden')
+      await wait(5000);
+      el.classList.remove('purple', 'circle', 'hidden');
+
+    };
+
+
+
+    go.addEventListener('click', animate2)
 
     go.addEventListener('clickxxxx', function (e) {
       console.log(el)
