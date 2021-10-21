@@ -59,7 +59,7 @@
     async function makeDinner() {
       const pizzaPromise1 = await makePizza(['pepperoni']);
       const pizzaPromise2 = await makePizza(['mushrooms']);
-      const [pep, mush] = await Promise.all([pizzaPromise1, pizzaPromise2])
+      const [pep, mush] = await Promise.all([pizzaPromise1, pizzaPromise2]);
       console.log(pep, mush);
     };
     makeDinner();
