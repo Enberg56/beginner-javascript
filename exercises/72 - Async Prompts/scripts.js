@@ -1,6 +1,14 @@
 function wait(ms = 0) {
   return new Promise(resolve => setTimeout(resolve, ms))
 }
+async function destroyPopup(popup){
+popup.classList.remove('open');
+await wait(1000);
+popup.remove();
+  // remove the popup entirely
+  myPopup = null;
+};
+
 async function ask(options) {
   return new Promise(async function (resolve) {
     // First we need to create a popup with all the fields in it
@@ -31,8 +39,11 @@ async function ask(options) {
         e.preventDefault();
         console.log('SUBMITTED');
         resolve(e.target.input.value);
+        console.log(e.target.input.value);
         // remove it from the DOM entirely
+        destroyPopup(popup);
       },
+    {once:true}
     );
 
     // when someone does submit it, resolve the data that was in the input box!
