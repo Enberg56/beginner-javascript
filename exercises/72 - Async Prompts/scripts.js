@@ -86,7 +86,16 @@ const questions = [
   { title: 'What is your age?', cancel: true },
   { title: 'What is your dogs name?' },
 ]
+// ----- Not what we want, this creates all the poppups at once.
+// Promise.all(questions.map(ask)).then(data => {
+//   console.log(data);
+// });
 
-Promise.all(questions.map(ask)).then(data => {
-  console.log(data);
-});
+async function askMany() {
+  for (const question of questions) {
+    u
+    const answer = await ask(question);
+    console.log(answer);
+  }
+}
+askMany();
