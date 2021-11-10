@@ -4,8 +4,8 @@ function wait(ms = 0) {
 async function destroyPopup(popup){
 popup.classList.remove('open');
 await wait(1000);
+// remove the popup entirely
 popup.remove();
-  // remove the popup entirely
   myPopup = null;
 };
 
@@ -25,11 +25,19 @@ async function ask(options) {
     );
 
     // check if they want a cancel button
-    if (options.cancle) {
+    if (options.cancel) {
       const skipButton = document.createElement('button');
       skipButton.type = 'button';
       skipButton.textContent = 'Cancel';
       popup.firstElementChild.appendChild(skipButton);
+      skipButton.addEventListener(
+        'click',
+        function(){
+          resolve(null);
+          destroyPopup(popup);
+      },
+      {once:true}
+      );
     };
 
     // listen for the submit event on the inputs
@@ -39,7 +47,6 @@ async function ask(options) {
         e.preventDefault();
         console.log('SUBMITTED');
         resolve(e.target.input.value);
-        console.log(e.target.input.value);
         // remove it from the DOM entirely
         destroyPopup(popup);
       },
@@ -57,4 +64,29 @@ async function ask(options) {
   });
 }
 
-ask({ title: 'does this work', cancle: true });
+// ask({ title: 'does this work', cancle: true });
+
+async function askQuestion(e) {
+  const button = e.currentTarget;
+  const cancel = 'cancel' in button.dataset;
+
+  const answer = await ask({
+    title: button.dataset.question,
+    cancel,
+  });
+  console.log(answer);
+
+}
+
+const buttons = document.querySelectorAll('[data-question]');
+buttons.forEach(button => button.addEventListener('click',askQuestion));
+
+const questions = [
+  { title: 'What is your name?' },
+  { title: 'What is your age?', cancel: true },
+  { title: 'What is your dogs name?' },
+]
+
+Promise.all(questions.map(ask)).then(data => {
+  console.log(data);
+});
