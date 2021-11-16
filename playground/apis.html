@@ -9,8 +9,27 @@
 </head>
 
 <body>
+  <h1 class="text-here"></h1>
   <script>
-
+    function handleError(err) {
+      console.log("Ho No!");
+      console.log(err);
+    }
+    async function displayUsername(username) {
+      const textDestination = document.querySelector('.text-here');
+      textDestination.textContent = "loading....";
+      const endpoint = "https://api.github.com/users/wesbos";
+      const wesPromise = fetch(endpoint);
+      wesPromise
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+          console.log(data.name);
+          textDestination.textContent = `${data.name} - ${data.location}`;
+        })
+        .catch(handleError);
+    }
+    displayUsername('wesbos')
   </script>
 </body>
 
