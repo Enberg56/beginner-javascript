@@ -11,25 +11,27 @@
 <body>
   <h1 class="text-here"></h1>
   <script>
+    const textDestination = document.querySelector('.text-here');
     function handleError(err) {
       console.log("Ho No!");
       console.log(err);
+      textDestination.textContent = `Something went wrong: ${err}`;
     }
-    async function displayUsername(username) {
-      const textDestination = document.querySelector('.text-here');
+
+    async function displayUser(username) {
       textDestination.textContent = "loading....";
-      const endpoint = "https://api.github.com/users/wesbos";
-      const wesPromise = fetch(endpoint);
-      wesPromise
-        .then((response) => response.json())
-        .then((data) => {
-          console.log(data);
-          console.log(data.name);
-          textDestination.textContent = `${data.name} - ${data.location}`;
-        })
-        .catch(handleError);
-    }
-    displayUsername('wesbos')
+
+      const baseEndpoint = "https://api.github.com";
+      const userEndpoint = `${baseEndpoint}/users`;
+
+      const response = await fetch(`${userEndpoint}/${username}`);
+      const data = await response.json();
+
+      console.log(data);
+      console.log(data.name);
+      textDestination.textContent = `${data.name} - ${data.location}`;
+    };
+    displayUser('wesbos').catch(handleError)
   </script>
 </body>
 
