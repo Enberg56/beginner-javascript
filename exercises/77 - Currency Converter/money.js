@@ -1,3 +1,8 @@
+const fromSelect = document.querySelector(`[name="from_currency"]`);
+const toSelect = document.querySelector(`[name="from_amount"]`);
+const endpoint = "http://api.exchangeratesapi.io/v1/latest";
+const key = "API_KEY";
+
 const currencies = {
   USD: 'United States Dollar',
   AUD: 'Australian Dollar',
@@ -32,3 +37,25 @@ const currencies = {
   ZAR: 'South African Rand',
   EUR: 'Euro',
 };
+
+const optionsHTML = generateOptions(currencies);
+// populating the selector
+console.log(optionsHTML);
+fromSelect.innerHTML = optionsHTML;
+toSelect.innerHTML = optionsHTML;
+
+function generateOptions(options) {
+  return Object.entries(options).map(([currencyCode, currencyName])=>{
+    return `<option velue="${currencyCode}">${currencyCode} - ${currencyName}</option>`
+}).join("");
+}
+
+async function fetchRates(base = "USD") {
+  const res = await fetch(`
+  ${endpoint}
+  ${key}
+  & base = ${base}
+  `);
+  const rates = await res.json();
+  console.log(rates);
+}
